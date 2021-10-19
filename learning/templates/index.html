@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href=" https://fonts.googleapis.com/css?family=Lora">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <h1>Homepage</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+	<p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% if name is defined %}
+      <p>Welcome {{ name }}</p>
+      <a href="/logout" class="btn btn-info btn-lg">
+    	<span class="glyphicon glyphicon-log-out"></span> Log out
+      </a>
+      <br>
+      <br>
+      <br>
+      <br>
+    {% endif %}
+
+    <a href="/form">Fill out our form (Umich email required)</a>
+    <br>
+    <a href="/matches">View matches</a>
+  </body>
+</html>

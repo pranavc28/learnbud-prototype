@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matches</title>
+  </head>
+  <body>
+    <h1>Your matches</h1>
+    {% for match in match_infos %}
+    <h2>{{ match[0] }}</h2>
+    <p>Email: {{ match[1] }}</p>
+    <p>Similarity score: {{ match[2] }}</p>
+    {% endfor %}
+  </body>
+</html>

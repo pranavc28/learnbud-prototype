@@ -1,0 +1,5 @@
+#!/bin/bash
+mysql -u admin -ppassword --database=<INSERT_HERE> --host=<INSERT_HERE> --port=<INSERT_HERE> --batch -e "select * from Details" | sed 's/\t/","/g;s/^/"/;s/$/"/;s/\n//g' > input/input.csv
+python3 map.py > tmp/map-output.txt
+python3 group.py < tmp/map-output.txt > tmp/group-output.txt
+python3 reduce.py < tmp/map-output.txt

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href=" https://fonts.googleapis.com/css?family=Lora">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="static/css/styles.min.css">
+</head>
+<body>
+
+<div class="container">
+  Welcome {{name}}!
+
+  <div class="col-sm-4">
+    <div>Like this page?</div>
+    <!-- We will put our React component inside this div. -->
+    <div id="like_button_container"></div>
+
+    <h4>Fill the form</h4>
+      <p>The form below will store the details in your AWS RDS MySQL Workbench</p>
+
+    <form action="/insert" method="POST">
+
+      <div class="form-group">
+        <label for="usr">Name:</label>
+	<input name="name" type="text" value="{{ name }}" class="form-control" id="usr" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+	<input name="email" type="email" value="{{ email }}" class="form-control" id="email" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Preferred location(s):</label><br>
+        <input type="checkbox" id="north" name="north" value="north">
+          <label for="north">North Campus</label><br>
+        <input type="checkbox" id="central" name="central" value="central">
+          <label for="central">Central Campus</label><br>
+      </div>
+
+      <div class="radio">
+        <label>Gender:</label><br>
+        <label class="radio-inline"><input type="radio" name="gender" value="Male">Male</label>
+        <br>
+        <label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
+      </div>
+
+      <!-- <div class="radio">
+
+      </div><br> -->
+
+      <div class="radio">
+        <label>Gender preferences for team members:</label><br>
+        <label class="radio-inline"><input type="radio" name="gender_pref" value="Male">Male</label>
+      </div>
+      <div class="radio">
+        <label class="radio-inline"><input type="radio" name="gender_pref" value="Female">Female</label>
+      </div>
+      <div class="radio">
+        <label class="radio-inline"><input type="radio" name="gender_pref" value="NoPreference">No preference</label>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label for="major">Major:</label>
+        <select name="major" type="text" class="form-control" id="major">
+          <option value="">Please select an option</option>
+          <option value="aero">Aerospace Engineering</option>
+          <option value="che">Chemical Engineering</option>
+          <option value="ce">Computer Engineering</option>
+          <option value="cs">Computer Science</option>
+          <option value="ee">Electrical Engineering</option>
+          <option value="ds">Data Science</option>
+          <option value="mech">Mechanical Engineering</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="year">School year:</label>
+        <select name="year" type="text" class="form-control" id="year">
+          <option value="">Please select an option</option>
+          <option value="1">Freshman</option>
+          <option value="2">Sophomore</option>
+          <option value="3">Junior</option>
+          <option value="4">Senior</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="clubs">Club affiliations:</label>
+        <textarea class="form-control" rows="5" id="clubs" name="clubs"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>EECS class(es) taken:</label><br>
+        <input type="checkbox" id="203" name="eecs_203" value="203">
+          <label for="203">203</label><br>
+        <input type="checkbox" id="280" name="eecs_280" value="280">
+          <label for="280">280</label><br>
+        <!-- <input type="checkbox" id="281" name="281" value="281">
+          <label for="281">281</label><br>
+        <input type="checkbox" id="370" name="370" value="370">
+          <label for="370">370</label><br>
+        <input type="checkbox" id="376" name="376" value="376">
+          <label for="376">376</label><br>
+        <input type="checkbox" id="388" name="388" value="388">
+          <label for="388">388</label><br>
+        <input type="checkbox" id="481" name="481" value="481">
+          <label for="481">481</label><br>
+        <input type="checkbox" id="482" name="482" value="482">
+          <label for="482">482</label><br>
+        <input type="checkbox" id="492" name="492" value="492">
+          <label for="492">492</label><br> -->
+      </div>
+
+      <div class="form-group">
+        <label for="avg_hours">Hours spent studying on average per week:</label>
+        <select name="avg_hours" type="text" class="form-control" id="avg_hrs">
+          <option value="">Please select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="hours">Hours planned to be studied for this class per week:</label>
+        <select name="hours" type="text" class="form-control" id="hrs">
+          <option value="">Please select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="grade">Target grade:</label>
+        <select name="grade" type="text" class="form-control" id="grade">
+          <option value="">Please select an option</option>
+          <option value="A">A+/A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="career">Career interests:</label>
+        <textarea class="form-control" rows="5" id="career" name="career"></textarea>
+      </div>
+
+      <br>
+
+      <input type="submit" name="submit" value="Submit" class="btn btn-success">
+    </form>
+    </div>
+  </div>
+  <hr>
+
+  <h4> You have just submitted the following:</h4>
+    {{ details }}
+  <br>
+  <br>
+  <hr>
+  <a href="/matches">View matches</a>
+  <br>
+  <br>
+  <a href="/logout" class="btn btn-info btn-lg">
+    <span class="glyphicon glyphicon-log-out"></span> Log out
+  </a>
+</div>
+
+<!-- Load React. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+<!-- Load our React component. -->
+<script src="{{url_for('static', filename='like_button.js')}}"></script>
+
+</body>
+</html>
